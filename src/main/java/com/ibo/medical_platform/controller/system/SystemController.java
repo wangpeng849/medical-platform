@@ -1,8 +1,11 @@
 package com.ibo.medical_platform.controller.system;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.ibo.medical_platform.result.ServiceResult;
+import com.ibo.medical_platform.service.SystemManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 /**
  * @Author farling
@@ -14,8 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sys")
 public class SystemController {
 
-    @RequestMapping("/modifyUser")
+    @Autowired
+    SystemManagerService systemManagerService;
+
+    @GetMapping("/modifyUser")
     public String modifyUser(){
         return "success!";
+    }
+
+    @GetMapping("/editPassword")
+    public ServiceResult editPassword(@RequestParam("username") String username, @RequestParam("password") String password){
+        return systemManagerService.editPassword(username,password);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author farling
  * @Date 2019/12/3
+ *
+ * 用户权限控制测试controller
  */
 @RestController
 public class UserController {

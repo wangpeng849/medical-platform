@@ -7,6 +7,10 @@ import org.springframework.util.StringUtils;
 
 @Component
 @Slf4j
+@Deprecated
+/**
+ *   用于测试
+ */
 public class MyPasswordEncoder implements PasswordEncoder {
 
     @Override //不清楚除了在下面方法用到还有什么用处
