@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class ServiceResult<T> extends CommonResult {
     private Integer code;
-    private String errMsg;
+    private String errorMsg;
     private T data;
     public ServiceResult(ResultEnum resultEnum, T data){
         //super();
         this.code = resultEnum.getCode();
-        this.errMsg = resultEnum.getDescripe();
+        this.errorMsg = resultEnum.getDescripe();
         this.data = data;
     }
 }

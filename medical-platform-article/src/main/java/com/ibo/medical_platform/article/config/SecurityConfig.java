@@ -36,32 +36,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //无需验证放行
                 .antMatchers("/public/**")
-                .permitAll()
                 //放行登录
+                .permitAll()
                 .antMatchers("/login")
                 .permitAll()
                 //拥有权限才可访问
-                .antMatchers(HttpMethod.GET,"/user/**").hasAuthority("getAllUser")
+                .antMatchers(HttpMethod.GET,"/sys/**").hasAuthority("admin")
                 //拥有任一权限即可访问
-                .antMatchers(HttpMethod.GET, "/vipUser/**").hasAnyAuthority("1","2")
-                .antMatchers("/sys/**").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/vipUser/**").hasAnyAuthority("vipuser")
                 //角色类似，hasRole(),hasAnyRole()
+//                .antMatchers("/sys/**").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 //未登录跳转页面,设置了authenticationentrypoint后无需设置未登录跳转页面
-//                .loginPage("/public/unlogin")
-//                //处理登录post请求接口，无需自己实现
-//                .loginProcessingUrl("/public/login")
+//                .loginPage("/login")
+               //处理登录post请求接口，无需自己实现
+                .loginProcessingUrl("/login/suc")
                 //登录失败转发接口
                 .failureForwardUrl("/failed")
-//                .usernameParameter("id") //修改用户名的表单name，默认为username
-//                .passwordParameter("password")//修改密码的表单name，默认为password
                 .and()
                 //自定义登出
                 .logout()
                 //自定义登出api，无需自己实现
-                .logoutUrl("/public/logout")
-                .logoutSuccessUrl("/public/logoutSuccess")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/logoutSuccess")
                 ;
     }
 

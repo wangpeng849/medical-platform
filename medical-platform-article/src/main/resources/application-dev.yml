@@ -5,3 +5,9 @@ spring:
     url: jdbc:mysql://localhost:3306/farling?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+
+swagger:
+  enable: true
+logging:
+  level:
+    com.ibo.medical_platform.article.mapper: debug
