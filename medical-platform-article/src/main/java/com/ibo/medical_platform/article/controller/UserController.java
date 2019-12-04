@@ -54,4 +54,10 @@ public class UserController {
     public String testApi6(){
         return " user logout success";
     }
+
+    @ApiOperation(value="登录失败接口",notes="wangp")
+    @PostMapping("/failed")
+    public String testApi7(){
+        return " user login failed";
+    }
 }

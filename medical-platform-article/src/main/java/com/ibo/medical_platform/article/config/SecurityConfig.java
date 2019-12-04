@@ -41,17 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login")
                 .permitAll()
                 //拥有权限才可访问
-                .antMatchers(HttpMethod.GET,"/sys/**").hasAuthority("admin")
+//                .antMatchers(HttpMethod.GET,"/sys/**").hasAuthority("admin")
                 //拥有任一权限即可访问
                 .antMatchers(HttpMethod.GET, "/vipUser/**").hasAnyAuthority("vipuser")
                 //角色类似，hasRole(),hasAnyRole()
-//                .antMatchers("/sys/**").hasAnyRole("ADMIN")
+                .antMatchers("/sys/**").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 //未登录跳转页面,设置了authenticationentrypoint后无需设置未登录跳转页面
 //                .loginPage("/login")
                //处理登录post请求接口，无需自己实现
-                .loginProcessingUrl("/login/suc")
+                .loginProcessingUrl("/login")
+                .successForwardUrl("/login/suc")
                 //登录失败转发接口
                 .failureForwardUrl("/failed")
                 .and()

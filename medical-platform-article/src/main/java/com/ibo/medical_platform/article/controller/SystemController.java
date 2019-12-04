@@ -1,4 +1,4 @@
-package com.ibo.medical_platform.article.controller.system;
+package com.ibo.medical_platform.article.controller;
 
 import com.ibo.medical_platform.article.service.SystemManagerService;
 import com.ibo.medical_platform.common.result.ServiceResult;
@@ -6,9 +6,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author farling
@@ -36,8 +38,7 @@ public class SystemController {
     @GetMapping("/editPassword")
     public ServiceResult editPassword(@ApiParam(name="username",value="用户名",required = true) @RequestParam("username") String username,
                                       @ApiParam(name="password",value="密码",required = true) @RequestParam("password") String password){
-        String username1 = username;
-        String password1 = password;
-        return systemManagerService.editPassword(username,password);
+        String brcyptPwd = new BCryptPasswordEncoder().encode(password);
+        return systemManagerService.editPassword(username,brcyptPwd);
     }
 }
